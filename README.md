@@ -1,13 +1,13 @@
 # Multi-Algorithm Maze Visualizer
 
-![Project Banner](https://via.placeholder.com/1200x400?text=Multi-Algorithm+Maze+Visualizer+Banner)
 > *An interactive tool to visualize and compare pathfinding algorithms in real-time.*
 
 ## 📌 Overview
 
 This project is a high-performance, interactive **Maze Visualizer** built with Python and Pygame. It allows users to generate complex mazes and watch how different Artificial Intelligence algorithms navigate through them to find the shortest path. 
 
-The application provides a side-by-side comparison of four major pathfinding algorithms, tracking metrics like **Nodes Explored**, **Execution Time**, and **Path Length**.
+![Main Interface](./Screenshot%202026-03-31%20164224.png)
+*Full-screen visualization showing BFS, DFS, Dijkstra, and A\* running simultaneously.*
 
 ---
 
@@ -16,60 +16,73 @@ The application provides a side-by-side comparison of four major pathfinding alg
 - **Real-time Visualization**: Watch the algorithms "think" as they explore the maze.
 - **Dynamic Maze Generation**: Uses the **Recursive Backtracking** algorithm to create unique, solvable mazes every time.
 - **Algorithm Comparison**: View BFS, DFS, Dijkstra, and A* simultaneously to compare their efficiency.
-- **Interactive UI**: Resizable window support with real-time metric updates.
-- **Cross-Platform**: Runs on Windows, macOS, and Linux.
+- **Metric Tracking**: Real-time stats for Nodes Explored, Time Elapsed, and Path Length.
 
 ---
 
-## 📸 Visual Gallery
+## 📊 Algorithm Comparison & Metrics
 
-| Main Interface | Algorithm Comparison |
+Below is a side-by-side comparison of how each algorithm approaches the same maze. Each search pattern is unique to the logic of the underlying algorithm.
+
+| BFS (Breadth-First) | DFS (Depth-First) |
 | :---: | :---: |
-| ![Main Screen](https://via.placeholder.com/600x400?text=Main+Interface+Screenshot) | ![Comparison](https://via.placeholder.com/600x400?text=Algorithm+Comparison+Screenshot) |
-| *Place an image of the initial screen here (R key)* | *Place an image of all algorithms running (SPACE key)* |
+| ![BFS](./Screenshot%202026-03-31%20164429.png) | ![DFS](./Screenshot%202026-03-31%20164439.png) |
+| **Exploration**: Wide & Radial | **Exploration**: Deep & Linear |
+
+| Dijkstra's Algorithm | A* Search (A-Star) |
+| :---: | :---: |
+| ![Dijkstra](./Screenshot%202026-03-31%20164454.png) | ![A*](./Screenshot%202026-03-31%20164505.png) |
+| **Exploration**: Uniform Expansion | **Exploration**: Targeted/Directional |
+
+### Performance Analysis
+
+1. **Nodes Explored (Efficiency)**:
+   - **A*** is the most efficient, as it uses a heuristic (Manhattan Distance) to "aim" toward the goal, resulting in the lowest node count.
+   - **BFS** and **Dijkstra** explore a high number of nodes because they search in every possible direction until the goal is found.
+   - **DFS** explores nodes randomly and often visits unnecessary branches.
+
+2. **Time Elapsed**:
+   - **A*** typically finishes first due to its targeted nature.
+   - **BFS/Dijkstra** take longer as they must "fill" the maze areas.
+
+3. **Path Length (Optimality)**:
+   - **BFS, Dijkstra, and A*** are guaranteed to find the **Shortest Path** in this grid.
+   - **DFS** often finds a significantly longer, non-optimal path because it doesn't prioritize distance.
 
 ---
 
-## 🛠️ Prerequisites & Installation
+## 🛠️ Installation & Setup
 
 ### 1. Requirements
-- **Python 3.8+**: [Download here](https://www.python.org/downloads/)
-- **Pygame**: The core engine for graphics and window management.
+- **Python 3.8+**
+- **Pygame**
 
 ### 2. Setup Instructions
 
 #### **For Windows**
-1. Open Command Prompt or PowerShell.
-2. Clone this repository or download the source code.
-3. Navigate to the project folder:
-   ```bash
-   cd maze_ai_project
-   ```
-4. Install dependencies:
+1. Navigate to the project folder.
+2. Install dependencies:
    ```bash
    pip install pygame
    ```
-5. Run the application:
+3. Run:
    ```bash
    python main.py
    ```
 
 #### **For macOS / Linux**
-1. Open the Terminal.
-2. Install Pygame using pip:
+1. Install Pygame:
    ```bash
    pip3 install pygame
    ```
-3. Run the application:
+2. Run:
    ```bash
    python3 main.py
    ```
 
 ---
 
-## 🎮 How to Use
-
-Once the application is running, use the following keyboard shortcuts to control the visualizer:
+## 🎮 Controls
 
 | Key | Action |
 | :--- | :--- |
@@ -83,76 +96,18 @@ Once the application is running, use the following keyboard shortcuts to control
 
 ---
 
-## 🧠 Deep Dive: The Algorithms
-
-### 1. Breadth-First Search (BFS)
-![BFS Visualization](https://via.placeholder.com/400x200?text=BFS+Exploration+Pattern)
-- **Concept**: Explores neighbor nodes first, before moving to the next level neighbors.
-- **Mechanism**: Uses a **Queue** (FIFO).
-- **Pro**: Guaranteed to find the shortest path in an unweighted grid.
-- **Con**: High memory usage as it explores in all directions equally.
-
-### 2. Depth-First Search (DFS)
-![DFS Visualization](https://via.placeholder.com/400x200?text=DFS+Exploration+Pattern)
-- **Concept**: Goes as deep as possible along each branch before backtracking.
-- **Mechanism**: Uses a **Stack** (LIFO).
-- **Pro**: Low memory usage.
-- **Con**: Does **not** guarantee the shortest path; often finds very long, winding routes.
-
-### 3. Dijkstra's Algorithm
-![Dijkstra Visualization](https://via.placeholder.com/400x200?text=Dijkstra+Exploration+Pattern)
-- **Concept**: A classic greedy algorithm that finds the shortest path by tracking the minimum cost to reach each node.
-- **Mechanism**: Uses a **Priority Queue**.
-- **Note**: In this unweighted maze, it behaves similarly to BFS but is designed for weighted graphs.
-
-### 4. A* Search (A-Star)
-![A* Visualization](https://via.placeholder.com/400x200?text=A-Star+Exploration+Pattern)
-- **Concept**: An "informed" search algorithm that uses heuristics to speed up the process.
-- **Equation**: `f(n) = g(n) + h(n)`
-  - `g(n)`: Actual cost from start to current node.
-  - `h(n)`: Estimated cost from current node to goal (**Manhattan Distance**).
-- **Pro**: Extremely efficient; finds the optimal path while exploring significantly fewer nodes than BFS/Dijkstra.
-
----
-
 ## 🏗️ Technical Architecture
 
-### Maze Generation: Recursive Backtracking
-The maze isn't just random noise; it's generated using a **Depth-First Search** approach for carving paths:
-1. Start at a random cell.
-2. Mark it as visited and choose a random unvisited neighbor.
-3. Remove the wall between them and move to the neighbor.
-4. If no neighbors are left, backtrack to the previous cell.
-5. Repeat until all cells are visited.
-
-### Project Structure
-```text
-maze_ai_project/
-├── main.py              # Main Entry point & UI Logic
-├── algorithms/          # Logic for all AI searches
-│   ├── bfs.py           # Breadth-First Search
-│   ├── dfs.py           # Depth-First Search
-│   ├── dijkstra.py      # Dijkstra's Algorithm
-│   └── astar.py         # A* Search with Manhattan Heuristic
-└── README.md            # You are here!
-```
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome! If you have ideas for new algorithms (like Greedy Best-First or Bidirectional Search) or UI improvements:
-1. Fork the Project.
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`).
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`).
-4. Push to the Branch (`git push origin feature/AmazingFeature`).
-5. Open a Pull Request.
+- **Maze Generation**: Recursive Backtracking (DFS-based carving).
+- **UI Engine**: Pygame (Dynamic scaling & real-time rendering).
+- **Data Structures**: 
+  - Queues (BFS)
+  - Stacks (DFS)
+  - Priority Queues/Heaps (Dijkstra & A*)
 
 ---
 
 ## 📜 License
+Distributed under the MIT License.
 
-Distributed under the MIT License. See `LICENSE` for more information.
-
----
 **Made with ❤️ for AI Enthusiasts**
