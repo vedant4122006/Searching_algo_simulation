@@ -26,12 +26,12 @@ Below is a side-by-side comparison of how each algorithm approaches the same maz
 
 | BFS (Breadth-First) | DFS (Depth-First) |
 | :---: | :---: |
-| ![BFS](./Screenshot%202026-03-31%20164429.png) | ![DFS](./Screenshot%202026-03-31%20164439.png) |
+| ![BFS](./Screenshot%202026-03-31%20164429.png) | ![DFS](./Screenshot%202026-03-31%20164454.png) |
 | **Exploration**: Wide & Radial | **Exploration**: Deep & Linear |
 
 | Dijkstra's Algorithm | A* Search (A-Star) |
 | :---: | :---: |
-| ![Dijkstra](./Screenshot%202026-03-31%20164454.png) | ![A*](./Screenshot%202026-03-31%20164505.png) |
+| ![Dijkstra](./Screenshot%202026-03-31%20164439.png) | ![A*](./Screenshot%202026-03-31%20164505.png) |
 | **Exploration**: Uniform Expansion | **Exploration**: Targeted/Directional |
 
 ### Performance Analysis
