@@ -63,8 +63,7 @@ Below is a side-by-side comparison of how each algorithm approaches the same maz
 #### **Step 1: Clone the Repository**
 Open your terminal or command prompt and pull the code to your local machine:
 ```bash
-git clone [https://github.com/vedant4122006/Searching_algo_simulation.git](https://github.com/vedant4122006/Searching_algo_simulation.git)
-cd Searching_algo_simulation
+git clone https://github.com/vedant4122006/Searching_algo_simulation.git
 ```
 
 #### **Step 2: Create a Virtual Environment**
